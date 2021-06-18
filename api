@@ -1,0 +1,29 @@
+import { useEffect,useState } from 'react';
+function App() {
+  const [names, setNames] = useState();
+  const [pages, setPages] = useState();
+  useEffect(()=>{
+    fetch("https://reqres.in/api/users?page=2")
+    .then(res=>{
+      return res.json()
+    })
+    .then(datas=>{
+      console.log(datas)
+      setNames(datas.data)
+      setPages(datas.page)
+   })
+  }, []);
+ return (
+    <div className="App">
+       <div className="pageNumber">
+          {<a>Page: {pages}</a>} 
+       </div>
+       {names && names.map((name)=>(
+       <div className="list" key={name.id}>
+         <li>{name.first_name} {name.last_name}</li>
+       </div>
+       ))}
+    </div>
+    );
+}
+export default App;
