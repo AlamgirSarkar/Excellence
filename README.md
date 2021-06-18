@@ -1,1 +1,1 @@
-This is not the complete react project
+These are not the complete react project.
